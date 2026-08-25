@@ -18,7 +18,7 @@ import org.victorhernandez.system.ClasePrincipal;
  */
 public class ViewFactory {
 
-    private final String PATH_VIEWS = "/org/vh/system/view/";
+    private final String PATH_VIEWS = "/org/victorhernandez/system/view/";
 
     public Scene loadFileXML(String nameFXML, int width, int height) {
         String pathOfFile = PATH_VIEWS + nameFXML;
@@ -52,7 +52,7 @@ public class ViewFactory {
                 case "register" ->{
                     SceneManager.getInstanciaSceneManager().getStagePrincipal().setTitle("REGISTRO USUARIO");
                     SceneManager.getInstanciaSceneManager().getStagePrincipal().setResizable(false);
-                    scene = loadFileXML("RegisterView.fxml", 400, 500);
+                    scene = loadFileXML("RegisterView.fxml", 400, 350);
                 }
                 default ->
                     scene = loadFileXML("LoginView.fxml", 300, 400);

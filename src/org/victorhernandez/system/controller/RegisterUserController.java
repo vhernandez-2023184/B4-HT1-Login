@@ -24,5 +24,9 @@ public class RegisterUserController implements Initializable {
         ViewFactory viewFacto = new ViewFactory();
         viewFacto.viewLogin();
     }
+    @FXML
+    public void onCreateUser(MouseEvent event){
+        
+    }
     
 }

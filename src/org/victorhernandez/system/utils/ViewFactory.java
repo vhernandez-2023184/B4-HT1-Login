@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package org.vh.system.utils;
+package org.victorhernandez.system.utils;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
@@ -10,7 +10,7 @@ import java.net.URL;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Scene;
-import org.vh.system.ClasePrincipal;
+import org.victorhernandez.system.ClasePrincipal;
 
 /**
  *
@@ -34,6 +34,8 @@ public class ViewFactory {
 
         } catch (IOException e) {
             throw new UncheckedIOException(e);
+            
+            
         }
     }
 
@@ -46,6 +48,11 @@ public class ViewFactory {
                     SceneManager.getInstanciaSceneManager().getStagePrincipal().setTitle("Login de Usuarios");
                     SceneManager.getInstanciaSceneManager().getStagePrincipal().setResizable(false);
                     scene = loadFileXML("LoginView.fxml", 300, 400);
+                }
+                case "register" ->{
+                    SceneManager.getInstanciaSceneManager().getStagePrincipal().setTitle("REGISTRO USUARIO");
+                    SceneManager.getInstanciaSceneManager().getStagePrincipal().setResizable(false);
+                    scene = loadFileXML("RegisterView.fxml", 400, 500);
                 }
                 default ->
                     scene = loadFileXML("LoginView.fxml", 300, 400);
@@ -60,5 +67,8 @@ public class ViewFactory {
 
     public void viewLogin() {
         loadScene("login");
+    }
+    public void viewRegister(){
+        loadScene("register");
     }
 }

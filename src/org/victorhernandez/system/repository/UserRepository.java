@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package org.vh.system.repository;
+package org.victorhernandez.system.repository;
 
-import org.vh.system.model.User;
-import org.vh.system.config.ConexionDB;
+import org.victorhernandez.system.model.User;
+import org.victorhernandez.system.config.ConexionDB;
 import java.sql.CallableStatement;
 /**
  *

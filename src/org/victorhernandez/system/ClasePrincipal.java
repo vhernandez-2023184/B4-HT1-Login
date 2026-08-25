@@ -2,12 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package org.vh.system;
+package org.victorhernandez.system;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import org.vh.system.utils.SceneManager;
-import org.vh.system.utils.ViewFactory;
+import org.victorhernandez.system.utils.SceneManager;
+import org.victorhernandez.system.utils.ViewFactory;
 /**
  *
  * @author informatica

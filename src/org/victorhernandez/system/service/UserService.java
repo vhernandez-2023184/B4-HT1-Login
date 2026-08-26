@@ -1,0 +1,38 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package org.victorhernandez.system.service;
+
+import org.victorhernandez.system.model.User;
+import org.victorhernandez.system.repository.UserRepository;
+import org.victorhernandez.system.utils.AlertInformation;
+import org.victorhernandez.system.utils.Validations;
+
+public class UserService {
+
+    private Validations validate = new Validations();
+    private AlertInformation alertInfo = new AlertInformation();
+    private UserRepository userRepo= new UserRepository();
+
+    public UserStatus createUser(String user, String name, String lastName, String email, String password) {
+        if (validate.emptyText(user) == true
+                || validate.emptyText(name) == true
+                || validate.emptyText(lastName) == true
+                || validate.emptyText(email) == true
+                || validate.emptyText(password) == true) {
+            
+            alertInfo.viewAlert("ERROR", "ERROR DE CAMPOS VACIOS",
+                    "ERROR DE CAMPO",
+                    "DEJÓ CAMPOS VACIOS DEL FORMULARIO");
+            return UserStatus.FIELDS_EMPTY;
+        }
+        try {
+            User newUser = new User(password, email, name, lastName, user);
+            userRepo.create(newUser);
+            return UserStatus.USER_CREATED;
+        } catch (Exception e) {
+            return UserStatus.ERROR_USER_CREATE;
+        }
+    }
+}

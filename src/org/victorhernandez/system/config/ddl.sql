@@ -20,6 +20,6 @@ Delimiter $$
 	end $$
 Delimiter ;
  
- call sp_create_users("gene","soto","gen@gmail.com","gen","gs123")
- 
+ call sp_create_users("javier","hernandez","jh@gmail.com","jav","123");
+ select *from Users;
  

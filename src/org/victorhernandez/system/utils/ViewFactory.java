@@ -52,7 +52,7 @@ public class ViewFactory {
                 case "register" ->{
                     SceneManager.getInstanciaSceneManager().getStagePrincipal().setTitle("REGISTRO USUARIO");
                     SceneManager.getInstanciaSceneManager().getStagePrincipal().setResizable(false);
-                    scene = loadFileXML("RegisterView.fxml", 400, 350);
+                    scene = loadFileXML("RegisterView.fxml", 450, 550);
                 }
                 default ->
                     scene = loadFileXML("LoginView.fxml", 300, 400);

@@ -11,6 +11,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import org.victorhernandez.system.service.UserService;
+import org.victorhernandez.system.service.UserStatus;
 import org.victorhernandez.system.utils.AlertInformation;
 import org.victorhernandez.system.utils.Validations;
 import org.victorhernandez.system.utils.ViewFactory;
@@ -28,6 +30,7 @@ public class RegisterUserController implements Initializable {
     @FXML private TextField pwdConfirmPassword;    
     private Validations validate = new Validations();
     private AlertInformation alertInfo = new AlertInformation();
+    private UserService userService = new UserService();
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -65,12 +68,45 @@ public class RegisterUserController implements Initializable {
  
             return;
         }
-        if(validate.validateLengthText(user, 25) ||
-           validate.validateLengthText(name, 50) ||
-           validate.validateLengthText(lastName, 50) ||
-           validate.validateLengthText(email, 50) ||
-           validate.validateLengthText(password, 50)){
-            
+        
+        String msgField="";
+        if(validate.validateLengthText(user, 25)== false){
+            msgField="El campo Usuario es mayor a 25 caracteres";
+      }
+        if( 
+           validate.validateLengthText(name, 50)== false){
+             msgField="El campo Nombre es mayor a 50 caracteres";
+        }
+        if( validate.validateLengthText(lastName, 50)== false){
+             msgField="El campo Apellidos es mayor a 50 caracteres";
+        }
+        if(validate.validateLengthText(email, 50)== false){
+            msgField="El campo EMAIL es mayor a 50 caracteres";
+        }
+        if(validate.validateLengthText(password, 35)==false){
+             msgField="El campo PASSWORD es mayor a 50 caracteres";
+         }
+        if(msgField.isEmpty()== false){
+            alertInfo.viewAlert("ERROR", "ERRO DE CAMPO", "ERROR", msgField);
+           return;
+        }
+        if(validate.equalsText(password, confirmPass)==false){
+             alertInfo.viewAlert("ERROR", "ERRO DE CONTRASEÑA", "ERROR", "SUS CONTRASEÑAS NO COINCIDEN");
+           return;
+        }
+        UserStatus status=
+        userService.createUser(user, name, lastName, email, password);
+        switch(status){
+            case UserStatus.ERROR_USER_CREATE->
+            System.out.println("Error al crear ctrl");
+            case UserStatus.USER_CREATED->
+           System.out.println("Si se creo el usuario");
+            case UserStatus.FIELDS_EMPTY->
+            System.out.println("Los campos no estan vacios");
+            case UserStatus.VALUE_LENGHT_INVALID->
+             System.out.println("Validar longitud  de texto");
+            default -> System.out.println("Error desconocido");
         }
     }
+    
 }

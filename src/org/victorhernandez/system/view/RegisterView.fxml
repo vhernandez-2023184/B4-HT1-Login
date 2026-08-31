@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="400.0" spacing="10.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.victorhernandez.system.controller.RegisterUserController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="400.0" spacing="10.0" stylesheets="@../resources/style/RegisterUserStyles.css" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.victorhernandez.system.controller.RegisterUserController">
    <padding>
       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
    </padding>
@@ -53,8 +53,8 @@
       </GridPane>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button fx:id="btnCancel" mnemonicParsing="false" onMouseClicked="#onCancel" text="CANCELAR" />
-            <Button fx:id="btnCreateUser" mnemonicParsing="false" onMouseClicked="#onCreateUser" text="CREAR CUENTA" />
+            <Button id="btn-cancel" fx:id="btnCancel" mnemonicParsing="false" onMouseClicked="#onCancel" text="CANCELAR" />
+            <Button id="btn-create-account" fx:id="btnCreateUser" mnemonicParsing="false" onMouseClicked="#onCreateUser" text="CREAR CUENTA" />
          </children>
       </HBox>
    </children>

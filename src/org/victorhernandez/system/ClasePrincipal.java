@@ -5,6 +5,7 @@
 package org.victorhernandez.system;
 
 import javafx.application.Application;
+import static javafx.application.Application.launch;
 import javafx.stage.Stage;
 import org.victorhernandez.system.utils.SceneManager;
 import org.victorhernandez.system.utils.ViewFactory;

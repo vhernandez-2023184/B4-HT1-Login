@@ -5,6 +5,7 @@
 package org.victorhernandez.system.repository;
  
 import java.sql.CallableStatement;
+import java.sql.ResultSet;
 import org.victorhernandez.system.config.ConexionDB;
 import org.victorhernandez.system.model.User;
  
@@ -28,11 +29,38 @@ public class UserRepository implements UserInterface {
             callSP.setString(4, user.getUser());
             callSP.setString(5, user.getPassword());
             callSP.execute();
-            callSP.close(); //Liberar los recursos en memoria
+            callSP.close(); 
         } catch (Exception e) {
             System.out.println("Error al crear el usuario");
             System.out.println(e.getMessage());
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public User findByEmailOrUser(String login) {
+        User user = null;
+        try {
+            callSP = conexionDB.getConnection().prepareCall("{call sp_find_user_by_login(?)}");
+            callSP.setString(1, login);
+            ResultSet resultSet = callSP.executeQuery();
+            if (resultSet.next()) {
+                user = new User(
+                        resultSet.getString("id_user"),
+                        resultSet.getString("email"),
+                        resultSet.getString("name"),
+                        resultSet.getString("lastname"),
+                        resultSet.getString("password"),
+                        resultSet.getString("user")
+                );
+            }
+            resultSet.close();
+            callSP.close();
+        } catch (Exception e) {
+            System.out.println("Error al buscar el usuario");
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+        return user;
     }
 }

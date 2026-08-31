@@ -46,6 +46,7 @@ public class RegisterUserController implements Initializable {
  
         if (isEmailValid == false) {
             alertInfo.viewAlert("ERROR", "ERROR EMAIL", "ERROR DE CAMPO", "HAS INGRESADO UN EMAIL INCORRECTO");
+            return;
         }
         
         String user, name, email, lastName, password, confirmPass;
@@ -98,11 +99,16 @@ public class RegisterUserController implements Initializable {
         userService.createUser(user, name, lastName, email, password);
         switch(status){
             case UserStatus.ERROR_USER_CREATE->
-            System.out.println("Error al crear ctrl");
-            case UserStatus.USER_CREATED->
-           System.out.println("Si se creo el usuario");
+                alertInfo.viewAlert("ERROR", "ERROR AL CREAR USUARIO", "ERROR DE CREACION",
+                        "OCURRIO UN ERROR AL CREAR EL USUARIO, INTENTE DE NUEVO");
+            case UserStatus.USER_CREATED-> {
+                alertInfo.viewAlert("INFORMATION", "CUENTA CREADA", "REGISTRO EXITOSO",
+                        "SU CUENTA HA SIDO CREADA CORRECTAMENTE, YA PUEDE INICIAR SESION");
+                ViewFactory viewFacto = new ViewFactory();
+                viewFacto.viewLogin();
+            }
             case UserStatus.FIELDS_EMPTY->
-            System.out.println("Los campos no estan vacios");
+                System.out.println("Los campos no estan vacios");
             case UserStatus.VALUE_LENGHT_INVALID->
              System.out.println("Validar longitud  de texto");
             default -> System.out.println("Error desconocido");

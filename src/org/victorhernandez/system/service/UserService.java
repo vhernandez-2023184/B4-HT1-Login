@@ -35,4 +35,11 @@ public class UserService {
             return UserStatus.ERROR_USER_CREATE;
         }
     }
+
+    public User findUser(String login) {
+        if (validate.emptyText(login) == true) {
+            return null;
+        }
+        return userRepo.findByEmailOrUser(login);
+    }
 }

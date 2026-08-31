@@ -1,6 +1,6 @@
-DROP DATABASE IF exists auditoria_usuario_producto_in4am;
-create database auditoria_usuario_producto_in4am;
-use auditoria_usuario_producto_in4am;
+DROP DATABASE IF exists auditoria_usuario_producto;
+create database auditoria_usuario_producto;
+use auditoria_usuario_producto;
 
 create table Users(
 	name varchar(50) not null check(length(name) <= 50),
@@ -22,4 +22,21 @@ Delimiter ;
  
  call sp_create_users("javier","hernandez","jh@gmail.com","jav","123");
  select *from Users;
- 
+
+Delimiter $$
+	create procedure sp_find_user_by_login(in login_p varchar(50))
+	begin
+		select id_user, name, lastname, email, user, password
+		from Users
+		where email = login_p or user = login_p;
+	end $$
+Delimiter ;
+
+Delimiter $$
+	create procedure sp_login(in login_p varchar(50), in password_p varchar(35))
+	begin
+		select id_user, name, lastname, email, user, password
+		from Users
+		where (email = login_p or user = login_p) and password = password_p;
+	end $$
+Delimiter ;
